@@ -74,7 +74,12 @@ test_big_endian(WORDS_BIGENDIAN)
 #LibPng
 option(IL_PNG_LIB "Custom location for LibPng" OFF)
 if(NOT IL_PNG_LIB)
-  find_package(PNG)
+  if(HUNTER_ENABLED)
+    hunter_add_package(PNG)
+    find_package(PNG CONFIG REQUIRED)
+  else()
+    find_package(PNG)
+  endif()
 endif(NOT IL_PNG_LIB)
 
 #LibJpeg
@@ -236,8 +241,12 @@ set(libs "")
 set(incs "")
 
 if(NOT IL_NO_PNG)
-  list(APPEND incs ${PNG_INCLUDE_DIRS} )
-  list(APPEND libs ${PNG_LIBRARIES} )
+  if(HUNTER_ENABLED)
+    list(APPEND libs PNG::png)
+  else()
+    list(APPEND incs ${PNG_INCLUDE_DIRS} )
+    list(APPEND libs ${PNG_LIBRARIES} )
+  endif()
 endif(NOT IL_NO_PNG)
 
 if(NOT IL_NO_JPG)
@@ -293,8 +302,11 @@ if(IL_USE_DXTC_SQUISH)
 endif(IL_USE_DXTC_SQUISH)
 
 
-include_directories(${incs})
-target_link_libraries(IL ${libs})
+if(NOT HUNTER_ENABLED)
+  include_directories(${incs})
+endif()
+
+target_link_libraries(IL PUBLIC ${libs})
 
 # generate config.h
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/config.h.cmake.in ${CMAKE_CURRENT_SOURCE_DIR}/include/config.h)
