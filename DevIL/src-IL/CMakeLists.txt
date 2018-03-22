@@ -96,7 +96,12 @@ endif(NOT IL_JPEG_LIB)
 #TIFF
 option(IL_TIFF_LIB "Custom location for TIFF lib" OFF)
 if(NOT IL_TIFF_LIB)
-  find_package(TIFF)
+  if(HUNTER_ENABLED)
+    hunter_add_package(TIFF)
+    find_package(TIFF CONFIG REQUIRED)
+  else()
+    find_package(TIFF)
+  endif()
 endif(NOT IL_TIFF_LIB)
 
 #Jasper
@@ -264,8 +269,12 @@ if(NOT IL_NO_JPG)
 endif(NOT IL_NO_JPG)
 
 if(NOT IL_NO_TIF)
-  list(APPEND incs ${TIFF_INCLUDE_DIRS} )
-  list(APPEND libs ${TIFF_LIBRARIES} )
+  if(HUNTER_ENABLED)
+    list(APPEND libs TIFF::libtiff)
+  else()
+    list(APPEND incs ${TIFF_INCLUDE_DIRS} )
+    list(APPEND libs ${TIFF_LIBRARIES} )
+  endif()
 endif(NOT IL_NO_TIF)
 
 if(NOT IL_NO_JP2)
