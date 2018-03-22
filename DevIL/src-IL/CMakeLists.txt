@@ -85,7 +85,12 @@ endif(NOT IL_PNG_LIB)
 #LibJpeg
 option(IL_JPEG_LIB "Custom location for LibJPEG" OFF)
 if(NOT IL_JPEG_LIB)
-  find_package(JPEG)
+  if(HUNTER_ENABLED)
+    hunter_add_package(Jpeg)
+    find_package(JPEG CONFIG REQUIRED)
+  else()
+    find_package(JPEG)
+  endif()
 endif(NOT IL_JPEG_LIB)
 
 #TIFF
@@ -250,8 +255,12 @@ if(NOT IL_NO_PNG)
 endif(NOT IL_NO_PNG)
 
 if(NOT IL_NO_JPG)
-  list(APPEND incs ${JPEG_INCLUDE_DIRS} )
-  list(APPEND libs ${JPEG_LIBRARIES} )
+  if(HUNTER_ENABLED)
+    list(APPEND libs JPEG::jpeg)
+  else()
+    list(APPEND incs ${JPEG_INCLUDE_DIRS} )
+    list(APPEND libs ${JPEG_LIBRARIES} )
+  endif()
 endif(NOT IL_NO_JPG)
 
 if(NOT IL_NO_TIF)
