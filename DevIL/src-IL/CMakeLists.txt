@@ -250,6 +250,12 @@ endif(UNICODE)
 set(libs "")
 set(incs "")
 
+if(HUNTER_ENABLED)
+  hunter_add_package(ZLIB)
+  find_package(ZLIB CONFIG REQUIRED)
+  target_link_libraries(libs PUBLIC ZLIB::zlib)
+endif()
+
 if(NOT IL_NO_PNG)
   if(HUNTER_ENABLED)
     list(APPEND libs PNG::png)
