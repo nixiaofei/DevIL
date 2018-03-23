@@ -10,8 +10,8 @@ set(
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.20.26.tar.gz"
-    SHA1 "04c42ba5194ca4e30d97f0e30adbb231facda048"
+    URL "https://github.com/ruslo/hunter/archive/v0.20.27.tar.gz"
+    SHA1 "aafefc6377dc9a25d84703702e22434cd6f71d5c"
 )
 
 project(devil)
