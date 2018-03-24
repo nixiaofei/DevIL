@@ -16,4 +16,8 @@ HunterGate(
 
 project(devil)
 
+if("${CMAKE_SYSTEM_NAME}" STREQUAL "WindowsStore")
+  add_definitions(-DDEVIL_WINDOWS_STORE)
+endif()
+
 add_subdirectory(DevIL)

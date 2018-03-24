@@ -331,7 +331,7 @@ ILboolean iLoadUtxInternal(void)
 	vector <UTXEXPORTTABLE> ExportTable;
 	vector <UTXIMPORTTABLE> ImportTable;
 	vector <UTXPALETTE> Palettes;
-	ILimage		*Image;
+	ILimage		*Image = 0;
 	ILuint		NumPal = 0, i, j = 0;
 	ILint		Name;
 	ILubyte		Type;

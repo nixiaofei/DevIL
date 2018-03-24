@@ -1101,7 +1101,7 @@ char *iMakeString()
 	imemclear(TimeStr, 20);
 
 	time(&Time);
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(DEVIL_WINDOWS_STORE)
 	_tzset();
 #endif
 	CurTime = localtime(&Time);

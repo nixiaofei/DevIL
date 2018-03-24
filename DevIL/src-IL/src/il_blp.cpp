@@ -225,7 +225,7 @@ ILboolean iLoadBlpInternal(void)
 {
 	BLP2HEAD	Header;
 	ILubyte		*CompData;
-	ILimage		*Image;
+	ILimage		*Image = 0;
 	ILuint		Mip, j, x, CompSize, AlphaSize, AlphaOff;
 	ILint		y;
 	ILboolean	BaseCreated = IL_FALSE;
