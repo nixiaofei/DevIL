@@ -387,3 +387,17 @@ install(FILES
 	DESTINATION lib/pkgconfig
 )
 
+if(DEVIL_INSTALL_THIRD_PARTIES)
+  install(
+      FILES
+      "$<TARGET_FILE:jasper::libjasper>"
+      "$<TARGET_FILE:JPEG::jpeg>"
+      "$<TARGET_FILE:lcms::lcms>"
+      "$<TARGET_FILE:TIFF::libtiff>"
+      "$<TARGET_FILE:mng::mng>"
+      "$<TARGET_FILE:PNG::png>"
+      "$<TARGET_FILE:ZLIB::zlib>"
+      DESTINATION
+      lib
+  )
+endif()
