@@ -343,6 +343,8 @@ ILboolean ilLoadJpegL(const void *Lump, ILuint Size);
 ILboolean ilSaveJpeg(ILconst_string FileName);
 ILuint    ilSaveJpegF(ILHANDLE File);
 ILuint    ilSaveJpegL(void *Lump, ILuint Size);
+ILboolean ilLoadFromJpegStruct(void *_JpegInfo);
+ILboolean ilSaveFromJpegStruct(void *_JpegInfo);
 ILboolean ilIsValidKtx(ILconst_string FileName);
 ILboolean ilIsValidKtxF(ILHANDLE File);
 ILboolean ilIsValidKtxL(const void *Lump, ILuint Size);
